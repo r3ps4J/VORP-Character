@@ -640,33 +640,44 @@ namespace VorpCharacter.Script
 
         public async Task SaveChanges()
         {
-            TriggerEvent("vorpinputs:getInput", Common.GetTranslation("ButtonInputName"), Common.GetTranslation("PlaceHolderInputName"), new Action<dynamic>(async (cb) =>
+            TriggerEvent("vorpinputs:getInput", Common.GetTranslation("ButtonInputName"), Common.GetTranslation("PlaceHolderInputFirstname"), new Action<dynamic>(async (cb) =>
             {
-                string result = cb;
+                string firstname = cb;
                 await Delay(1000);
-
-                string[] words = result.Trim().Split(' ');
-
-                if (result.Length < 3 || words.Count() < 2)
-                {
-                    TriggerEvent("vorp:Tip", Common.GetTranslation("PlaceHolderInputName"), 3000); // from client side
-                    SaveChanges();
-                }
+                if (firstname.Length < 3)
+                    {
+                        TriggerEvent("vorp:Tip", Common.GetTranslation("PlaceHolderInputFirstname"), 3000); // from client side
+                        SaveChanges();
+                    }
                 else
                 {
-                    if (secondchance)
+                    TriggerEvent("vorpinputs:getInput", Common.GetTranslation("ButtonInputName"), Common.GetTranslation("PlaceHolderInputLastname"), new Action<dynamic>(async (cb) =>
                     {
-                        TriggerServerEvent("vorp_updateexisting", skinPlayer, clothesPlayer, result, charidx, usedcha);
-                        StopCreation();
-                        StartAnim();
-                    }
-                    else
-                    {
-                        TriggerServerEvent("vorp_SaveNewCharacter", skinPlayer, clothesPlayer, result);
-                        StopCreation();
-                        StartAnim();
-                    }
+                        string lastname = cb;
+                        await Delay(1000);
 
+                        if (lastname.Length < 3)
+                        {
+                            TriggerEvent("vorp:Tip", Common.GetTranslation("PlaceHolderInputLastname"), 3000); // from client side
+                            SaveChanges();
+                        }
+                        else
+                        {
+                            if (secondchance)
+                            {
+                                TriggerServerEvent("vorp_updateexisting", skinPlayer, clothesPlayer, firstname, lastname, charidx, usedcha);
+                                StopCreation();
+                                StartAnim();
+                            }
+                            else
+                            {
+                                TriggerServerEvent("vorp_SaveNewCharacter", skinPlayer, clothesPlayer, firstname, lastname);
+                                StopCreation();
+                                StartAnim();
+                            }
+
+                        }
+                    }));
                 }
             }));
         }

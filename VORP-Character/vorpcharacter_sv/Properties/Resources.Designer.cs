@@ -63,6 +63,7 @@ namespace VorpCharacter.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {
         ///  &quot;discord&quot;: {
+        ///    &quot;key&quot;: &quot;discordBotKey&quot;,
         ///    &quot;webHooks&quot;: [
         ///      {
         ///        &quot;name&quot;: &quot;vorp_character&quot;,

@@ -24,8 +24,8 @@ namespace VorpCharacter.Script
             //Event for spawn unique character
             EventHandlers["vorp_SpawnUniqueCharacter"] += new Action<int>(SpawnUniqueCharacter);
             //Event for save the new character
-            EventHandlers["vorp_SaveNewCharacter"] += new Action<Player, dynamic, dynamic, string>(SaveNewCharacter);
-            EventHandlers["vorp_updateexisting"] += new Action<Player, dynamic, dynamic, string, dynamic, dynamic>(SaveNewCharacter2);
+            EventHandlers["vorp_SaveNewCharacter"] += new Action<Player, dynamic, dynamic, string, string>(SaveNewCharacter);
+            EventHandlers["vorp_updateexisting"] += new Action<Player, dynamic, dynamic, string, string, dynamic, dynamic>(SaveNewCharacter2);
             //Event for delete the character
             EventHandlers["vorp_DeleteCharacter"] += new Action<Player, int>(DeleteCharacter);
 
@@ -123,14 +123,10 @@ namespace VorpCharacter.Script
             PluginManager.Instance.DiscordClient.SendDiscordEmbededMessage("vorp_character", $"VORP Character Sentry", $"Deleted Character", $"User: {player.Name}", Web.DiscordColor.Red);
         }
 
-        private async void SaveNewCharacter([FromSource] Player player, dynamic skin, dynamic components, string name)
+        private async void SaveNewCharacter([FromSource] Player player, dynamic skin, dynamic components, string firstname, string lastname)
         {
             string sid = player.SteamHandle();
 
-            string[] divider = name.Split(' ');
-
-            string firstname = divider[0];
-            string lastname = divider[1];
             string skinPlayer = JsonConvert.SerializeObject(skin);
             string compsPlayer = JsonConvert.SerializeObject(components);
 
@@ -158,14 +154,10 @@ namespace VorpCharacter.Script
             }
         }
 
-        private async void SaveNewCharacter2([FromSource] Player player, dynamic skin, dynamic components, string name, dynamic charidx, dynamic charx)
+        private async void SaveNewCharacter2([FromSource] Player player, dynamic skin, dynamic components, string firstname, string lastname, dynamic charidx, dynamic charx)
         {
             string sid = player.SteamHandle();
 
-            string[] divider = name.Split(' ');
-
-            string firstname = divider[0];
-            string lastname = divider[1];
             string skinPlayer = JsonConvert.SerializeObject(skin);
             string compsPlayer = JsonConvert.SerializeObject(components);
             dynamic UserCharacter = charidx;

@@ -94,6 +94,8 @@
   "EyesList": "Types of Eyes",
   "EyesDesc": "Change the eye color",
   "PlaceHolderInputName": "Write the first name and last name of your character",
+  "PlaceHolderInputFirstname": "Write the first name of your character",
+  "PlaceHolderInputLastname": "Write the last name of your character",
   "ButtonInputName": "Confirm",
   "InputError": "You must have a name longer than 3 letters",
   "TitleMainMenu": "Character Editor",

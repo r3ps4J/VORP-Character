@@ -87,6 +87,8 @@
   "EyesList": "Tipi di occhi",
   "EyesDesc": "Cambia il colore degli occhi",
   "PlaceHolderInputName": "Scrivi il nome e cognome del tuo personaggio",
+  "PlaceHolderInputFirstname": "Write the first name of your character",
+  "PlaceHolderInputLastname": "Write the last name of your character",
   "ButtonInputName": "Conferma",
   "InputError": "Devi avere un nome che abbia più di 3 letter",
   "TitleMainMenu": "Editor personaggio",

@@ -117,6 +117,8 @@
 
   //Input Name 
   "PlaceHolderInputName": "Vor- und Nachnamen deines Charakters?",
+  "PlaceHolderInputFirstname": "Write the first name of your character",
+  "PlaceHolderInputLastname": "Write the last name of your character",
   "ButtonInputName": "Bestätigen",
   "InputError": "Der Name muss länger als 3 Buchstaben sein",
 
